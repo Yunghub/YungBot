@@ -8,6 +8,7 @@ from disnake import ApplicationCommandInteraction, Option, OptionType
 from disnake.ext import commands
 from disnake.ext.commands import Context
 
+# Load cogs
 try:
     with open("config.json", "r") as c:
         config = json.load(c)
@@ -17,8 +18,7 @@ except FileNotFoundError:
 class General(commands.Cog, name="General"):
     def __init__(self, bot):
         self.bot = bot
-
-
+    # Check for ping command
     @commands.command(
         name="ping",
         description="Check if the bot is alive.",
@@ -31,5 +31,6 @@ class General(commands.Cog, name="General"):
         )
         await context.send(embed=embed)
 
+        
 def setup(bot):
     bot.add_cog(General(bot))
